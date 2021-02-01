@@ -1,0 +1,40 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Create new homepage banner",
+      "details": "Lorem ipsum",
+      "complete": true
+    },
+    {
+      "id": 2,
+      "title": "Make marketing email",
+      "details": "Lorem ipsum",
+      "complete": false
+    },
+    {
+      "title": "Learn vue Js 3",
+      "details": "Build project planner!",
+      "complete": true,
+      "id": 4
+    },
+    {
+      "title": "vue js ninja",
+      "details": "piyush singhania",
+      "complete": true,
+      "id": 7
+    },
+    {
+      "title": "Learn Full java",
+      "details": "Learn full stack java in 2 months!",
+      "complete": false,
+      "id": 8
+    },
+    {
+      "title": "Learn python",
+      "details": "fafa",
+      "complete": true,
+      "id": 9
+    }
+  ]
+}
