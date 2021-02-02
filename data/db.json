@@ -35,6 +35,12 @@
       "details": "fafa",
       "complete": true,
       "id": 9
+    },
+    {
+      "title": "Succesfully deployed the web app",
+      "details": "yes",
+      "complete": true,
+      "id": 10
     }
   ]
 }
