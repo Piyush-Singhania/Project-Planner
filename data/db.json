@@ -7,15 +7,9 @@
       "complete": true
     },
     {
-      "id": 2,
-      "title": "Make marketing email",
-      "details": "Lorem ipsum",
-      "complete": false
-    },
-    {
       "title": "Learn vue Js 3",
       "details": "Build project planner!",
-      "complete": true,
+      "complete": false,
       "id": 4
     },
     {
@@ -41,6 +35,12 @@
       "details": "yes",
       "complete": true,
       "id": 10
+    },
+    {
+      "title": "Create college club",
+      "details": "Learning and Building the stuff\n",
+      "complete": true,
+      "id": 11
     }
   ]
 }
