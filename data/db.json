@@ -39,7 +39,7 @@
     {
       "title": "Create college club",
       "details": "Learning and Building the stuff\n",
-      "complete": true,
+      "complete": false,
       "id": 11
     }
   ]
