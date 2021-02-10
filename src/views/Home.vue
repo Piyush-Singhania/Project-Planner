@@ -12,6 +12,7 @@
 <script>
 import SingleProject from '../components/SingleProject.vue'
 import FilterNav from '../components/FilterNav'
+import {projectFirestore} from '../firebase/config'
 
 export default {
   name: 'Home',
@@ -34,22 +35,76 @@ export default {
     }
   },
   mounted(){
-    fetch("http://localhost:3000/projects")
-      .then(res => res.json())
-      .then(data => this.projects = data)
-      .catch(err => console.log(err.message));
+    // fetch("http://localhost:3000/projects")
+    //   .then(res => res.json())
+    //   .then(data => this.projects = data)
+    //   .catch(err => console.log(err.message));
+
+    const load = async () => {
+      try{
+        const res = await projectFirestore
+        .collection('projects')
+        .orderBy('createdAt', 'desc')
+        .get();
+  
+        this.projects = res.docs.map((doc) => {
+          return{ ...doc.data(), id: doc.id};
+        })
+      }
+      catch(err){
+        console.log(err);
+      }
+
+    }
+    load();
+
   },
   methods:{
     handleDelete(id){
-      this.projects = this.projects.filter((project) => {
-        return project.id !== id;
-      })
+      // this.projects = this.projects.filter((project) => {
+      //   return project.id !== id;
+      // })
+      const load = async () => {
+        try{
+          const res = await projectFirestore
+          .collection('projects')
+          .orderBy('createdAt', 'desc')
+          .get();
+    
+          this.projects = res.docs.map((doc) => {
+            return{ ...doc.data(), id: doc.id};
+          })
+        }
+        catch(err){
+          console.log(err);
+        }
+      }
+      load();
     },
+
     handleComplete(id){
-      let p = this.projects.find((project) => {
-        return project.id === id;
-      })
-      p.complete = !p.complete
+      // let p = this.projects.find((project) => {
+      //   return project.id === id;
+      // })
+      // p.complete = !p.complete
+
+      const load = async () => {
+      try{
+        const res = await projectFirestore
+        .collection('projects')
+        .orderBy('createdAt', 'desc')
+        .get();
+  
+        this.projects = res.docs.map((doc) => {
+          return{ ...doc.data(), id: doc.id};
+        })
+      }
+      catch(err){
+        console.log(err);
+      }
+
+    }
+    load();
     },
   }
 }

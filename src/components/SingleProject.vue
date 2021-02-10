@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { projectFirestore } from '../firebase/config.js'
+
 export default {
     props:['project'],
     data(){
@@ -26,19 +28,32 @@ export default {
         }
     },
     methods: {
-        deleteProject() {
-            fetch(this.uri, {method: "DELETE"})
-                .then(() => this.$emit('delete', this.project.id))
-                .catch(err => console.log(err.message));
+        async deleteProject() {
+            // fetch(this.uri, {method: "DELETE"})
+            //     .then(() => this.$emit('delete', this.project.id))
+            //     .catch(err => console.log(err.message));
+
+            await projectFirestore.collection('projects')
+                .doc(this.project.id)
+                .delete();
+            this.$emit('delete', this.project.id)
+
         },
-        toggleComplete(){
-            fetch(this.uri, {
-            method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({complete: !this.project.complete})
-            }).then(()=> {
-                this.$emit('complete', this.project.id)
-            }).catch(err => console.log(err.message));
+        async toggleComplete(){
+            // fetch(this.uri, {
+            // method: 'PATCH',
+            // headers: {'Content-Type': 'application/json'},
+            // body: JSON.stringify({complete: !this.project.complete})
+            // }).then(()=> {
+            //     this.$emit('complete', this.project.id)
+            // }).catch(err => console.log(err.message));
+
+            await projectFirestore.collection('projects')
+                .doc(this.project.id)
+                .update({
+                    "complete": !this.project.complete
+                })
+            this.$emit('complete',this.project.id)
         }
     },
 }

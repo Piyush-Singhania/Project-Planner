@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import {projectFirestore, timestamp} from '../firebase/config.js'
+
 export default {
     data(){
         return{
@@ -17,19 +19,31 @@ export default {
         }
     },
     methods:{
-        handleSubmit(){
+        async handleSubmit(){
+
+          try{
+
+            
             let project = {
               title: this.title,
               details: this.details,
               complete: false,
+              createdAt: timestamp()
             };
-            fetch("http://localhost:3000/projects",{
-              method: 'POST',
-              headers: {'Content-Type': 'application/json'},
-              body: JSON.stringify(project)
-            }).then(() => {
-              this.$router.push('/');
-            }).catch(err => console.log(err.message));
+            // fetch("http://localhost:3000/projects",{
+              //   method: 'POST',
+            //   headers: {'Content-Type': 'application/json'},
+            //   body: JSON.stringify(project)
+            // }).then(() => {
+              //   this.$router.push('/');
+            // }).catch(err => console.log(err.message));
+            const res = await projectFirestore.collection('projects').add(project);
+            this.$router.push('/');
+          }
+          catch(err){
+            console.log(err);
+
+          }
         }
     }
 }
